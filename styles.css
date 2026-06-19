@@ -1,0 +1,291 @@
+:root {
+  --celeste: #6cabdd;
+  --celeste-dark: #4a90c2;
+  --celeste-deep: #2f6fa0;
+  --white: #ffffff;
+  --gold: #f4c430;
+  --ink: #0d2b45;
+  --card-back: linear-gradient(145deg, #6cabdd 0%, #4a90c2 55%, #2f6fa0 100%);
+  --shadow: 0 8px 20px rgba(13, 43, 69, 0.25);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: #eaf3fb;
+}
+
+.bg-stripes {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    180deg,
+    #cfe6f7 0px,
+    #cfe6f7 60px,
+    #eaf3fb 60px,
+    #eaf3fb 120px
+  );
+  opacity: 0.7;
+}
+
+.topbar {
+  text-align: center;
+  padding: 18px 12px 4px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--celeste-deep);
+  text-shadow: 0 2px 0 #fff;
+}
+
+.title .star { color: var(--gold); }
+
+.subtitle {
+  margin: 6px 0 0;
+  font-size: clamp(13px, 2vw, 17px);
+  color: var(--celeste-deep);
+  opacity: 0.85;
+}
+
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+  justify-content: center;
+  margin: 14px auto 18px;
+  padding: 12px 18px;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 78px;
+}
+
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7a93a8;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--celeste-deep);
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background: var(--celeste-deep);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+.btn:hover { background: var(--celeste-dark); transform: translateY(-1px); }
+.btn:active { transform: translateY(1px); }
+.btn-big { font-size: 18px; padding: 14px 28px; margin-top: 14px; }
+
+main { padding: 0 12px 30px; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) { .board { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 560px) { .board { grid-template-columns: repeat(4, 1fr); gap: 7px; } }
+
+.card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  perspective: 800px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.card.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reverso */
+.card-back {
+  background: var(--card-back);
+  border: 3px solid #fff;
+  color: #fff;
+  font-size: clamp(26px, 4vw, 40px);
+}
+.card-back .sun {
+  width: 58%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, var(--gold) 0 38%, #f0b400 39% 52%, transparent 53%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,0.25);
+}
+.card-back .sun::after { content: "★"; color: #fff; font-size: 60%; }
+
+/* Frente (foto del jugador) */
+.card-front {
+  transform: rotateY(180deg);
+  background: #fff;
+  border: 3px solid var(--celeste);
+  flex-direction: column;
+}
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.card-name {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: linear-gradient(transparent, rgba(13,43,69,0.92));
+  color: #fff;
+  font-size: clamp(9px, 1.2vw, 12px);
+  font-weight: 700;
+  text-align: center;
+  padding: 14px 4px 5px;
+  line-height: 1.1;
+}
+.card-number {
+  position: absolute;
+  top: 5px; left: 6px;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 11px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+/* Fallback cuando no carga la foto */
+.card-fallback {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #eaf3fb, #cfe6f7);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 6px;
+}
+.card-fallback .ball { font-size: clamp(24px, 4vw, 38px); }
+.card-fallback .fb-name {
+  margin-top: 4px;
+  font-size: clamp(9px, 1.2vw, 12px);
+  font-weight: 700;
+  color: var(--celeste-deep);
+}
+
+.card.matched { cursor: default; }
+.card.matched .card-inner {
+  box-shadow: 0 0 0 3px var(--gold), 0 0 18px rgba(244,196,48,0.7);
+  animation: pop 0.4s ease;
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.card.locked { pointer-events: none; }
+
+/* Overlay de victoria */
+.win-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 43, 69, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+}
+.win-overlay.hidden { display: none; }
+.win-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 30px 28px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  animation: rise 0.4s ease;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.win-card h2 { color: var(--celeste-deep); margin: 8px 0; }
+.trophy { font-size: 56px; }
+
+/* Overlay de carga */
+.loading-overlay {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(234,243,251,0.95);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; color: var(--celeste-deep);
+}
+.loading-overlay .spinner {
+  width: 54px; height: 54px;
+  border: 6px solid #cfe6f7;
+  border-top-color: var(--celeste-deep);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.footer {
+  text-align: center;
+  padding: 6px 0 24px;
+  color: var(--celeste-deep);
+  font-weight: 700;
+}

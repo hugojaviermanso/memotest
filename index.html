@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Memo Test ⭐ Selección Argentina</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-stripes"></div>
+
+  <header class="topbar">
+    <h1 class="title">
+      <span class="star">★</span>
+      Memo Test — Selección Argentina
+      <span class="star">★</span>
+    </h1>
+    <p class="subtitle">Encontrá los 20 pares de jugadores</p>
+  </header>
+
+  <section class="hud">
+    <div class="stat">
+      <span class="stat-label">Pares</span>
+      <span class="stat-value"><span id="pairs">0</span>/20</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Movimientos</span>
+      <span class="stat-value" id="moves">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Tiempo</span>
+      <span class="stat-value" id="time">00:00</span>
+    </div>
+    <button id="restart" class="btn">Reiniciar</button>
+  </section>
+
+  <main>
+    <div id="board" class="board" aria-label="Tablero del memotest"></div>
+  </main>
+
+  <div id="win" class="win-overlay hidden">
+    <div class="win-card">
+      <div class="trophy">🏆</div>
+      <h2>¡Campeón del Mundo de la Memoria!</h2>
+      <p id="win-stats"></p>
+      <button id="play-again" class="btn btn-big">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <footer class="footer">Vamos Argentina 🇦🇷</footer>
+
+  <script src="players.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
