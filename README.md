@@ -1,34 +1,67 @@
-# Memo Test ⭐ Selección Argentina
+# Blockout 3D 🧊
 
-Juego de memoria (Memotest) **visual y jugable** con **20 pares** (40 cartas) de
-las caras de los jugadores de la Selección Argentina.
+Clon jugable del clásico **Blockout** (1989, California Dreams): el Tetris en
+**tres dimensiones**. Mirás dentro de un pozo rectangular y vas encajando los
+*policubos* que caen. Cuando una **capa** (un *face*) se llena por completo sin
+huecos, desaparece y todo lo de arriba cae. La partida termina cuando una pieza
+nueva ya no entra por la boca del pozo.
+
+Está hecho con HTML + CSS + JavaScript y render 3D real con
+[Three.js](https://threejs.org/). No necesita instalación.
 
 ## Cómo jugar
 
-1. Abrí `index.html` en cualquier navegador (doble clic).
-2. Tocá dos cartas para darlas vuelta. Si las caras coinciden, el par queda
-   descubierto. Si no, se vuelven a dar vuelta.
-3. Encontrá los 20 pares en la menor cantidad de movimientos y tiempo posible.
+Abrí `index.html` en cualquier navegador moderno (con conexión a internet la
+primera vez, para cargar Three.js desde el CDN). Elegí el **tamaño del pozo** y
+el **set de piezas** y tocá **JUGAR**.
 
-Tenés contador de **pares**, **movimientos** y **cronómetro**, y un botón de
-**Reiniciar** que baraja el tablero de nuevo.
+### Controles
 
-## Las caras de los jugadores
+| Acción | Tecla |
+| --- | --- |
+| Mover la pieza en el plano | **Flechas** o **WASD** |
+| Rotar sobre el eje X / Y / Z | **Q** / **E** / **R** |
+| Caída rápida (soft drop) | **Shift** |
+| Soltar de golpe (hard drop) | **Espacio** |
+| Pausa | **P** |
+| Girar la cámara | **arrastrar con el ratón** |
 
-Para mostrar las fotos reales de cada jugador, el juego pide la foto de portada
-de cada uno a la **API pública de Wikipedia** al cargar (no hace falta descargar
-imágenes ni configurar nada). Por eso, la **primera carga necesita conexión a
-internet**.
+En móviles/tablet aparecen botones táctiles en pantalla.
 
-Si alguna foto no estuviera disponible, esa carta muestra automáticamente un
-respaldo con el ⚽ y el nombre del jugador, así el juego siempre es jugable.
+### Ayudas de profundidad
 
-El plantel se define en `players.js`; podés editar nombres, números o el título
-de Wikipedia (`wiki`) de cada jugador.
+Como en el original, leer la profundidad es clave. Para ayudar:
+
+- Un **fantasma translúcido** muestra dónde aterrizaría la pieza si la soltás.
+- Una **sombra en el suelo** marca la columna que ocupa.
+- El pozo tiene **anillos por nivel** y rejilla en el suelo.
+
+## Sets de piezas (fiel al original)
+
+- **Flat Blocks** — poliominós con grosor 1 (se excluye el recto de 4 en línea).
+- **Basic Blocks** — las 7 piezas del cubo Soma (tricubos y tetracubos).
+- **Extended** — planas + Soma + una selección de tetracubos y pentacubos 3D.
+
+## Tamaños de pozo
+
+Desde `3 × 3 × 10` (3D Mania) hasta `7 × 7 × 18` (máximo), incluyendo el
+clásico `5 × 5 × 12` y `5 × 5 × 10` (Out of Control).
+
+## Puntuación
+
+- Pequeño premio por colocar cada pieza.
+- Bonus **exponencial** por limpiar varias capas con una sola pieza.
+- Bonus **“Block Out”** por dejar el pozo completamente vacío.
+- El **nivel** sube cada 10 capas y acelera la caída.
 
 ## Archivos
 
-- `index.html` — estructura de la página.
-- `styles.css` — estilos (tema celeste y blanco).
-- `players.js` — los 20 jugadores.
-- `game.js` — lógica del juego y carga de las caras.
+- `index.html` — estructura y HUD.
+- `styles.css` — estilos (tema neón oscuro).
+- `blockout.js` — lógica del juego y render 3D.
+
+---
+
+Basado en *Blockout*, desarrollado por Aleksander Ustaszewski y Mirosław
+Zabłocki, publicado por California Dreams en 1989. Este es un homenaje/clon
+educativo, sin afiliación con los autores originales.
