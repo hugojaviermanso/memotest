@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Blockout 3D — Tetris en 3 dimensiones</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="game"></canvas>
+
+    <!-- HUD -->
+    <header id="hud">
+      <div class="hud-block">
+        <span class="label">PUNTOS</span>
+        <span id="score" class="value">0</span>
+      </div>
+      <div class="hud-block">
+        <span class="label">CAPAS</span>
+        <span id="faces" class="value">0</span>
+      </div>
+      <div class="hud-block">
+        <span class="label">NIVEL</span>
+        <span id="level" class="value">1</span>
+      </div>
+      <div class="hud-block next">
+        <span class="label">SIGUIENTE</span>
+        <canvas id="next" width="120" height="120"></canvas>
+      </div>
+    </header>
+
+    <!-- Controles táctiles -->
+    <div id="touch" class="hidden">
+      <div class="pad move">
+        <button data-act="up">▲</button>
+        <div class="row">
+          <button data-act="left">◀</button>
+          <button data-act="soft">▼</button>
+          <button data-act="right">▶</button>
+        </div>
+        <button data-act="down" class="wide">⇊ bajar</button>
+      </div>
+      <div class="pad rot">
+        <button data-act="rotX">⟳ X</button>
+        <button data-act="rotY">⟳ Y</button>
+        <button data-act="rotZ">⟳ Z</button>
+        <button data-act="drop" class="drop">DROP</button>
+      </div>
+    </div>
+
+    <!-- Overlay de inicio / configuración / fin -->
+    <div id="overlay">
+      <div class="panel">
+        <h1>BLOCK<span>OUT</span> <small>3D</small></h1>
+        <p class="tagline">El clásico Tetris tridimensional de 1989 (California Dreams).
+           Mirás dentro de un pozo y encajás los policubos que caen; completá una capa
+           entera sin huecos y desaparece.</p>
+
+        <div class="config">
+          <label>
+            <span>Tamaño del pozo (ancho × fondo × alto)</span>
+            <select id="cfg-size">
+              <option value="3,3,10">3 × 3 × 10 — 3D Mania</option>
+              <option value="5,5,12" selected>5 × 5 × 12 — Clásico</option>
+              <option value="5,5,10">5 × 5 × 10 — Out of Control</option>
+              <option value="4,4,12">4 × 4 × 12</option>
+              <option value="6,6,15">6 × 6 × 15</option>
+              <option value="7,7,18">7 × 7 × 18 — Máximo</option>
+            </select>
+          </label>
+          <label>
+            <span>Set de piezas</span>
+            <select id="cfg-set">
+              <option value="flat">Flat Blocks — planas</option>
+              <option value="basic" selected>Basic Blocks — cubo Soma</option>
+              <option value="extended">Extended — hasta pentacubos</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="start" class="primary">JUGAR</button>
+
+        <div class="help">
+          <h3>Controles</h3>
+          <ul>
+            <li><b>Flechas / WASD</b> — mover la pieza en el plano</li>
+            <li><b>Q · E · R</b> — rotar sobre los ejes X · Y · Z</li>
+            <li><b>Shift</b> — caída rápida (soft drop)</li>
+            <li><b>Espacio</b> — soltar de golpe (hard drop)</li>
+            <li><b>P</b> — pausa &nbsp;·&nbsp; <b>arrastrar el ratón</b> — girar la cámara</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="pause" class="hidden"><span>PAUSA</span></div>
+  </div>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/OrbitControls.js"></script>
+  <script src="blockout.js"></script>
+</body>
+</html>
