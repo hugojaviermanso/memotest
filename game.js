@@ -232,6 +232,12 @@
   /* ---------- Arranque ---------- */
 
   async function init() {
+    // Mantiene los textos del total sincronizados con la cantidad de jugadores.
+    const totalSpan = document.getElementById("pairs-total");
+    const totalSub = document.getElementById("pairs-total-sub");
+    if (totalSpan) totalSpan.textContent = TOTAL_PAIRS;
+    if (totalSub) totalSub.textContent = TOTAL_PAIRS;
+
     showLoading();
     await loadAllImages();
     hideLoading();

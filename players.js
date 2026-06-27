@@ -1,4 +1,4 @@
-// Plantel de 20 jugadores de la Selección Argentina.
+// Plantel de 16 jugadores de la Selección Argentina (16 pares = 32 fichas).
 // `wiki` es el título exacto del artículo de Wikipedia (en inglés, más estable)
 // del que el juego toma la foto de portada (la cara del jugador).
 const PLAYERS = [
@@ -17,9 +17,5 @@ const PLAYERS = [
   { name: "Leandro Paredes",     number: 5,  wiki: "Leandro Paredes" },
   { name: "Gonzalo Montiel",     number: 4,  wiki: "Gonzalo Montiel" },
   { name: "Lisandro Martínez",   number: 25, wiki: "Lisandro Martínez" },
-  { name: "Marcos Acuña",        number: 8,  wiki: "Marcos Acuña" },
-  { name: "Germán Pezzella",     number: 6,  wiki: "Germán Pezzella" },
   { name: "Paulo Dybala",        number: 21, wiki: "Paulo Dybala" },
-  { name: "Giovani Lo Celso",    number: 18, wiki: "Giovani Lo Celso" },
-  { name: "Franco Armani",       number: 1,  wiki: "Franco Armani" },
 ];
